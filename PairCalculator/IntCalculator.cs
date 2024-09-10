@@ -3,8 +3,9 @@
 public class IntCalculator : IIntCalculator
 {
     public int Result { get; set; }
-    
-    
+    public int Memory { get; set; }
+
+
     public void Reset()
     {
         throw new NotImplementedException();
@@ -27,7 +28,7 @@ public class IntCalculator : IIntCalculator
     {
         if (x < 0)
         {
-            Result += x;
+            Result += Math.Abs(x);
         }
         else
         {
@@ -38,7 +39,8 @@ public class IntCalculator : IIntCalculator
     public void Multiply(int x)
     {
         // if x makes result overflow, set result to int.MaxValue
-        if (Result * x >= Int32.MaxValue || Result * x <= Int32.MinValue)
+        long temp = (long) Result * x;
+        if (temp >= Int32.MaxValue || temp <= Int32.MinValue)
         {
             Result = -1;
         }
@@ -63,5 +65,20 @@ public class IntCalculator : IIntCalculator
     public void Modulus(int x)
     {
         Result %= x;
+    }
+    
+    public void ResetMemory()
+    {
+        Memory = 0;
+    }
+    
+    public void MemoryAdd()
+    {
+        Memory += Result;
+    }
+    
+    public void MemorySubtract()
+    {
+        Memory -= Result;
     }
 }

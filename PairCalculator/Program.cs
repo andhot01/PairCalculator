@@ -8,7 +8,8 @@ class Program
     {
         IntCalculator cal = new();
         
-        cal.Add(5);
+        cal.Add(100000000);
+        cal.Multiply(100000000);
         Console.WriteLine(cal.Result);
     }
 }
